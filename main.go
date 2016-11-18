@@ -41,8 +41,12 @@ func main() {
 			return
 		}
 		fmt.Println("Connection made...")
-		room := newRoom()
-		go room.run()
+
+		roomName := "attano"
+		room, created := getRoom(roomName)
+		if created {
+			go room.run()
+		}
 
 		rand.Seed(time.Now().Unix())
 		randName := corvo[:rand.Intn(26)]
